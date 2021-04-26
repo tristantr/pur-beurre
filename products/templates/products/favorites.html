@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+
+{% load custom_tags %}
+
+{% block body_content %}
+
+<header class="masthead">
+
+	{% if products %}
+
+	<div class="container">
+	<div class="row">
+		<div class=" col-12 bg-primary text-white rounded py-2 text-center"> Mes produits favoris </div>
+	</div>
+
+		<div class="row">
+			{% for product in products %}
+			<div class="col-12 col-xl-4 bg-white rounded my-1 border product-component">
+				{% display_product product=product %}
+			</div>
+			{% endfor %}
+		</div>
+		{% if products.has_previous %}
+		<a href="?page={{products.previous_page_number}}" class="btn bg-white" role="button">Précédant</a>
+		{% endif %}
+		{% if products.has_next %}
+		<a href="?page={{products.next_page_number}}" class="btn bg-white" role="button">Suivant</a>
+		{% endif %}	 
+	</div>
+
+	{% else %}
+
+	<div class="row align-items-center justify-content-center text-center bg-white py-3">
+		<div class="col-12 py-2 rounded text-primary mb-3"> Votre liste de favoris est vide ! </div>
+		<div class="row align-items-center justify-content-center text-center">
+			<a href="{% url 'index' %}" class="btn btn-outline-primary" role="button"> Retour à la page d'accueil </a>
+		</div>	
+	</div>
+
+	{% endif %}	
+
+
+</header>
+
+{% endblock %}

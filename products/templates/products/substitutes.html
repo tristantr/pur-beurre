@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load custom_tags %}
+
+
+{% block body_content %}
+
+<header class="masthead-substitutes">	
+
+	{% if substitutes %}
+
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class=" col-12 col-xl-4 bg-primary text-white rounded py-2 text-center"> Votre produit </div>
+			<div class="d-none d-xl-block col-4 py-2 text-center bg-primary rounded text-white"> 
+				Notre recommandation !
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="col-12 col-xl-4 bg-white rounded my-1 border product-component">
+				{% display_product product=my_product %}
+			</div>
+
+			<div class="col-xl-4 align-self-center d-none d-xl-block">
+				<div class="d-flex justify-content-center">
+					<i class="fas fa-arrow-right fa-10x text-white"></i>
+				</div>
+			</div>
+
+			<div class="d-xl-none col-12 bg-primary text-white rounded py-2 text-center mt-3"> 
+				Notre recommandation !
+			</div>
+			<div class="col-12 col-xl-4 bg-white rounded my-1 border product-component">
+				{% display_product product=best_substitute %}
+			</div>
+		</div>	
+	</div>	
+
+	<div class="container">
+		<div class="row">
+			<div class=" col-12 mt-3 bg-primary rounded text-white py-2 text-center"> Autres produits de substitutions</div>
+		</div>
+		<div class="row">
+			{% for product in substitutes %}
+			<div class="col-12 col-xl-4 bg-white rounded my-1 border product-component">
+				{% display_product product=product %}
+			</div>
+			{% endfor %}
+		</div>
+		{% if substitutes.has_previous %}
+		<a href="?page={{substitutes.previous_page_number}}" class="btn bg-white" role="button">Précédant</a>
+		{% endif %}
+		{% if substitutes.has_next %}
+		<a href="?page={{substitutes.next_page_number}}" class="btn bg-white" role="button">Suivant</a>
+		{% endif %}	 
+	</div>	
+
+	{% else %}
+
+	<div class="row align-items-center justify-content-center text-center bg-white py-3">
+		<div class="col-12 py-2 rounded text-primary mb-3"> Ce produit a le meilleur nutriscore de sa catégorie ! </div>
+		<div class="row align-items-center justify-content-center text-center">
+			<a href="{% url 'index' %}" class="btn btn-outline-primary" role="button"> Retour à la page d'accueil </a>
+		</div>	
+	</div>
+
+	{% endif %}
+
+
+</header>
+{% endblock %}

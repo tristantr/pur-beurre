@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_content %}
+
+<header class="masthead">
+
+<div class="container">
+	<div class="row d-flex justify-content-between bg-white rounded align-items-center">
+		<div class="lg-col-2 px-3 my-2">
+			<img src="{{ product.image }}" class="img_results">
+		</div>	
+		<div class="my-2 col-8 py-2">
+			<div class="row">
+				<div class="col-8">
+					<h5> Nom </h5>
+				</div>
+				<div class="col-4 ">
+					<div class="my-2" id="favorite-section">
+						{% if product.is_favorite %}
+						<a href="{% url 'favorite_product' id=product.id %}"><i class="fas fa-heart fa-lg"></i></a>
+						{% else %}
+						<a href="{% url 'favorite_product' id=product.id %}"><i class="far fa-heart fa-lg"></i></a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<p> {{ product.name }} </p>
+			<h5> Marque </h5>
+			<p> {{ product.brand }} </p>
+			<h5> Magasins </h5>
+			<p> {{ product.stores }} </p>
+			<h5> Composition </h5>
+			<p> {{ product.description }} </p>
+			<div class="row">
+				<div class="col-4">
+					<a href="{{ product.url }}"> Fiche OpenFoodFacts</a>
+				</div>
+				<div class="col-4">
+					<img class="nutriscore" src="{% static product.nutriscore %}" alt="nutriscore">
+				</div>
+			</div>
+		</div>	
+	<div class="row">
+		{% for category in categories %}
+		<div class="col-sm col-lg-3">
+			<a href=" {{ category.get_products }}" class="col-11 align-self-center btn btn-outline-primary p-1 m-1" role="button">{{ category.name }}</a>
+		</div>
+		{% endfor %}
+	</div>	
+	</div>
+</div>		 		
+
+</header>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block list_of_products %}
+
+
+<div class="container">
+	{% if object_list %}
+	<div class="row py-1">
+		<div class="col-12 py-2 bg-white rounded text-primary">Résultats</div>
+	</div>
+
+	<div class="container search_results overflow-auto pt-2" id="results">
+		{% for product in object_list %}
+		<div class="row m-lg-1 p-lg-2 bg-white rounded align-items-center py-2 my-1">
+			<div class="col-5 col-lg-3">
+				<img src="{{ product.image }}" class="card_image">
+			</div>
+			<div class="col-7 col-lg-7 text-left">
+				<span class="font-weight-bold"> Nom: </span> {{ product.name }} <br>
+				<span class="font-weight-bold"> Marque: </span> {{ product.brand }}
+			</div>
+			<div class="col-md-4 col-lg-2">
+				<a href="{{ product.get_substitutes }}" class="btn btn-outline-primary mt-2" role="button">Trouver un substitut</a>
+			</div>
+		</div>
+		{% endfor %}
+	{% else %}
+	<div class="row">
+		<div class="col-12 py-lg-2 bg-primary rounded text-white">Nous n'avons pas trouvé de produits correspondant à votre recherche....</div>
+	</div>
+	{% endif %}
+	</div>
+</div>
+
+{% endblock %}
+

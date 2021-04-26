@@ -1,0 +1,30 @@
+{% load custom_tags %}
+{% load static %}
+
+<div class="container">
+	<img class="card_image my-2"src="{{ product.image }}">
+	<div class="row mt-4 mx-2">
+		<span class="font-weight-bold"> Nom :</span> {{ product.name }}
+	</div>
+	<div class="row mx-2">	
+		<span class="font-weight-bold"> Marque :</span> {{ product.brand }}
+	</div>
+	<div class="row align-items-center my-3">
+		<div class="col-6">
+			<a href="{{ product.get_product_details }}" class="btn btn-outline-primary" role="button">Fiche Produit</a>
+		</div>
+
+		<div class="col-4">
+			<img class="nutriscore" src="{% static product.nutriscore %}" alt="nutriscore">
+		</div>
+
+		<div class="col-2" id="favorite-section">
+			{% if product.is_favorite %}
+			<a href="{% url 'favorite_product' id=product.id %}"><i class="fas fa-heart fa-lg"></i></a>
+			{% else %}
+			<a href="{% url 'favorite_product' id=product.id %}"><i class="far fa-heart fa-lg"></i></a>
+			{% endif %}		
+		</div>
+		
+	</div>
+</div>
