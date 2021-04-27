@@ -1,10 +1,12 @@
 from pathlib import Path
 import os
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'kwxj0-4uy&ey*7uqpwzdq4$ha1*&@8vep!1)zx)w5j7+)==fj9'
+SECRET_KEY = config("SECRET_KEY")
+
 
 DEBUG = False
 
@@ -25,7 +27,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
