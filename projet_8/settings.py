@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
 
-SECRET_KEY = env(‘SECRET_KEY’)
+SECRET_KEY = env('SECRET_KEY')
 
 
 DEBUG = False
@@ -65,11 +65,11 @@ AUTH_USER_MODEL = 'accounts.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env(‘DATABASE_NAME’),
-        'USER': env(‘DATABASE_USER’),
-        'PASSWORD': env(‘DATABASE_PASS’),
-        'HOST': env(‘DATABASE_HOST’),
-        'PORT': env(‘DATABASE_PORT’)
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASS'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT')
     }
 }
 
