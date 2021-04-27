@@ -11,7 +11,7 @@ environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['pur-beurre-tristan-tr.herokuapp.com', '127.0.0.1']
 
@@ -72,6 +72,10 @@ DATABASES = {
         'PORT': env('DATABASE_PORT')
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 AUTH_PASSWORD_VALIDATORS = [
