@@ -1,11 +1,14 @@
 from pathlib import Path
 import os
-from decouple import config
+import environ
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+environ.Env.read_env()
 
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = env(‘SECRET_KEY’)
 
 
 DEBUG = False
@@ -62,11 +65,11 @@ AUTH_USER_MODEL = 'accounts.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Pur_Beurre',
-        'USER': 'postgres',
-        'PASSWORD': 'Tristan92',
-        'HOST': 'localhost',
-        'PORT': '5433'
+        'NAME': env(‘DATABASE_NAME’),
+        'USER': env(‘DATABASE_USER’),
+        'PASSWORD': env(‘DATABASE_PASS’),
+        'HOST': env(‘DATABASE_HOST’),
+        'PORT': env(‘DATABASE_PORT’)
     }
 }
 
