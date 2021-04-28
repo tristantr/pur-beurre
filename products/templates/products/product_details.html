@@ -13,7 +13,7 @@
 		<div class="my-2 col-8 py-2">
 			<div class="row">
 				<div class="col-8">
-					<h5> Nom </h5>
+					<h4> Nom </h4>
 				</div>
 				<div class="col-4 ">
 					<div class="my-2" id="favorite-section">
@@ -26,14 +26,14 @@
 				</div>
 			</div>
 			<p> {{ product.name }} </p>
-			<h5> Marque </h5>
+			<h4> Marque </h4>
 			<p> {{ product.brand }} </p>
-			<h5> Magasins </h5>
+			<h4> Magasins </h4>
 			<p> {{ product.stores }} </p>
-			<h5> Composition </h5>
+			<h4> Composition </h4>
 			<p> {{ product.description }} </p>
-			<div class="row">
-				<div class="col-4">
+			<div class="row justify-content-between">
+				<div class="col-8">
 					<a href="{{ product.url }}"> Fiche OpenFoodFacts</a>
 				</div>
 				<div class="col-4">
@@ -43,7 +43,7 @@
 		</div>	
 	<div class="row">
 		{% for category in categories %}
-		<div class="col-sm col-lg-3">
+		<div class="col-sm col-lg-3 d-flex justify-content-center">
 			<a href=" {{ category.get_products }}" class="col-11 align-self-center btn btn-outline-primary p-1 m-1" role="button">{{ category.name }}</a>
 		</div>
 		{% endfor %}

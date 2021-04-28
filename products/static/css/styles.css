@@ -10120,7 +10120,7 @@ header.masthead-substitutes {
 
 @media (min-width: 992px) {
   header.masthead-substitutes {
-    height: 110vh;
+    height: 130vh;
     min-height: 40rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
@@ -10196,7 +10196,7 @@ header.masthead-substitutes {
 }
 
 .product-component {
-  height: 350px;
+  height: 400px;
 }
 
 .placeholder {
