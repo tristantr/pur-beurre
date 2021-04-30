@@ -17,11 +17,18 @@
 				</div>
 				<div class="col-4 ">
 					<div class="my-2" id="favorite-section">
-						{% if product.is_favorite %}
-						<a href="{% url 'favorite_product' id=product.id %}"><i class="fas fa-heart fa-lg"></i></a>
-						{% else %}
-						<a href="{% url 'favorite_product' id=product.id %}"><i class="far fa-heart fa-lg"></i></a>
-						{% endif %}
+						<form method="post" action="{{ product.get_favorite }}">
+							{% csrf_token %}
+							{% if product.is_favorite %}
+							<button type="submit" class="btn btn-default">
+								<span name="fav" class="fas fa-heart fa-lg" id="{{product.id}}"></span>
+							</button>	
+							{% else %}
+							<button type="submit" class="btn btn-default">
+								<span name="fav" class="far fa-heart fa-lg" id="{{product.id}}"></span>
+							</button>	
+							{% endif %}
+						</form>	
 					</div>
 				</div>
 			</div>
@@ -49,7 +56,7 @@
 		{% endfor %}
 	</div>	
 	</div>
-</div>		 		
+</div> 		
 
 </header>
 

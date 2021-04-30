@@ -101,15 +101,18 @@ def get_product_details(request, id=None):
 
 
 @login_required()
-def manage_favorite(request, id):
+def manage_favorites(request):
     """Add a product to favorites or remove a product from favorites"""
-    product = get_object_or_404(Product, id=id)
-    if product.favorites.filter(id=request.user.id).exists():
-        product.favorites.remove(request.user)
-    else:
-        product.favorites.add(request.user)
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+    if request.method == 'POST' and request.is_ajax:
+        product = request.POST.get('product_id')
+        product = get_object_or_404(Product, id=product)
 
+        if product.favorites.filter(id=request.user.id).exists():
+            product.favorites.remove(request.user)
+        else:
+            product.favorites.add(request.user)
+
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))      
 
 @login_required()
 def get_favorites(request):

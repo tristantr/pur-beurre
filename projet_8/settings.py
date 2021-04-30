@@ -11,7 +11,7 @@ environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['pur-beurre-tristan-tr.herokuapp.com', '127.0.0.1']
 

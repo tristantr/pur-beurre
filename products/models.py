@@ -44,3 +44,6 @@ class Product(models.Model):
     def get_product_details(self):
         """Returns the url to access a detail record for this product."""
         return reverse("product_details", kwargs={"id": self.id})
+
+    # def get_favorite(self):
+    #     return reverse("fav", kwargs={"id": self.id})
