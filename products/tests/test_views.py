@@ -123,36 +123,6 @@ class FavoritesView(TestCase):
         self.client.post(reverse("login"), self.credentials)
         self.client_user = auth.get_user(self.client)
 
-    def test_add_to_favorites(self):
-        """Test that a logged user can add a product to favorites"""
-        response = self.client.get(
-            reverse("favorite_product", kwargs={"id": self.product2.id})
-        )
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(self.user.favorites.count(), 1)
-        self.user.favorites.remove(self.product2)
-
-    def test_remove_from_favorites(self):
-        """Test that a logged user can remove a product from its favorites"""
-        self.user.favorites.add(self.product2)
-        response = self.client.get(
-            reverse("favorite_product", kwargs={"id": self.product2.id})
-        )
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(self.user.favorites.count(), 0)
-
-    def test_favorites_redirect_to_login_page_if_not_logged(self):
-        """Redirect anonymous to login page when trying to manage favorites"""
-        self.client.post(reverse("logout"))
-        response = self.client.get(
-            reverse("favorite_product", kwargs={"id": self.product2.id})
-        )
-        self.assertRedirects(
-            response,
-            "/accounts/login?next=/products/{}/favorites".format(self.product2.id),
-            status_code=302,
-        )
-
     def test_get_favorites_if_no_favorites(self):
         """User gets fav page even if there is no favorites to display"""
         self.assertEqual(self.user.favorites.count(), 0)
@@ -166,13 +136,3 @@ class FavoritesView(TestCase):
         response = self.client.get(reverse("favorites"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "products/favorites.html")
-
-    def test_get_favorites_redirect_to_login_page_if_not_logged(self):
-        """Redirect anonymous to login when trying to access favorites"""
-        self.client.post(reverse("logout"))
-        response = self.client.get(reverse("favorites"))
-        self.assertRedirects(
-            response,
-            "/accounts/login?next=/products/favorites",
-            status_code=302
-        )

@@ -20,7 +20,7 @@
 		<div class="row">
 
 			<div class="col-12 col-xl-4 bg-white rounded my-1 border d-flex justify-content-center">
-				{% display_product product=my_product %}
+				{% display_product product=my_product user=logged_user %}
 			</div>
 
 			<div class="col-xl-4 align-self-center d-none d-xl-block">
@@ -33,7 +33,7 @@
 				Notre recommandation !
 			</div>
 			<div class="col-12 col-xl-4 bg-white rounded my-1 border d-flex justify-content-center">
-				{% display_product product=best_substitute %}
+				{% display_product product=best_substitute user=logged_user%}
 			</div>
 		</div>	
 	</div>	
@@ -45,7 +45,7 @@
 		<div class="row">
 			{% for product in substitutes %}
 			<div class="col-12 col-xl-4 bg-white rounded my-1 border d-flex justify-content-center">
-				{% display_product product=product %}
+				{% display_product product=product user=logged_user%}
 			</div>
 			{% endfor %}
 		</div>

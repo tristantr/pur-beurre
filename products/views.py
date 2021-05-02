@@ -75,6 +75,7 @@ def get_substitutes(request, id=None):
             "substitutes": page,
             "best_substitute": best_substitute,
             "my_product": my_product,
+            "logged_user": request.user.is_authenticated
         }
 
     else:
@@ -95,7 +96,9 @@ def get_product_details(request, id=None):
     else:
         product.is_favorite = False
 
-    context = {"product": product, "categories": categories}
+    context = {"product": product,
+               "categories": categories,
+               "logged_user": request.user.is_authenticated}
 
     return render(request, "products/product_details.html", context=context)
 
@@ -112,7 +115,8 @@ def manage_favorites(request):
         else:
             product.favorites.add(request.user)
 
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))      
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+
 
 @login_required()
 def get_favorites(request):
@@ -133,7 +137,7 @@ def get_favorites(request):
     except EmptyPage:
         page = p.page(1)
 
-    context = {"products": page}
+    context = {"products": page, "logged_user": request.user.is_authenticated}
     return render(request, "products/favorites.html", context=context)
 
 
@@ -159,7 +163,7 @@ def get_category_products(request, id=None):
     except EmptyPage:
         page = p.page(1)
 
-    context = {"products": page, "category": category}
+    context = {"products": page, "category": category, "logged_user": request.user.is_authenticated}
 
     return render(request, "products/category.html", context=context)
 

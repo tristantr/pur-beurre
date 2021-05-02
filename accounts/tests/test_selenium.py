@@ -1,11 +1,8 @@
 from selenium import webdriver
-
-
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 import time
 
-from accounts.models import User
 from django.contrib.auth import get_user_model
 
 
@@ -37,10 +34,6 @@ class TestAccount(StaticLiveServerTestCase):
 
         submit_button = self.browser.find_element_by_id("registration_button")
         submit_button.click()
-
-        number_of_users = User.objects.all().count()
-        print("number_of_users: ")
-        print(number_of_users)
 
         time.sleep(5)
         # Redirection

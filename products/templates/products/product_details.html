@@ -15,6 +15,7 @@
 				<div class="col-8">
 					<h4> Nom </h4>
 				</div>
+				{% if logged_user %}
 				<div class="col-4 ">
 					<div class="my-2" id="favorite-section">
 						<form method="post" action="{{ product.get_favorite }}">
@@ -31,6 +32,7 @@
 						</form>	
 					</div>
 				</div>
+				{% endif %}
 			</div>
 			<p> {{ product.name }} </p>
 			<h4> Marque </h4>

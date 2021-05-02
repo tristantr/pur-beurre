@@ -18,6 +18,7 @@
 			<img class="nutriscore" src="{% static product.nutriscore %}" alt="nutriscore">
 		</div>
 
+		{% if logged_user %}
 		<div class="col-3" id="favorite-section">
 			{% csrf_token %}
 			<form method="post" action="{% url 'fav' %}" class="fav-form">
@@ -31,6 +32,7 @@
 				</button>	
 				{% endif %}
 			</form>	
-		</div>					
+		</div>
+		{% endif %}					
 	</div>
 </div>

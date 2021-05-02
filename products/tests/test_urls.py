@@ -17,8 +17,8 @@ class TestUrls(SimpleTestCase):
         self.assertEquals(resolve(url).func, views.get_substitutes)
 
     def test_manage_favorites_url_is_resolved(self):
-        url = reverse("favorite_product", kwargs={"id": 1})
-        self.assertEquals(resolve(url).func, views.manage_favorite)
+        url = reverse("fav")
+        self.assertEquals(resolve(url).func, views.manage_favorites)
 
     def test_get_product_details_url_is_resolved(self):
         url = reverse("product_details", kwargs={"id": 1})

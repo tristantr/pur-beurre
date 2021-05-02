@@ -17,7 +17,7 @@
 		<div class="row">
 			{% for product in products %}
 			<div class="col-12 col-xl-4 bg-white rounded my-1 border product-component">
-				{% display_product product=product %}
+				{% display_product product=product user=logged_user%}
 			</div>
 			{% endfor %}
 		</div>
