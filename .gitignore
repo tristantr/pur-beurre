@@ -1,3 +1,6 @@
 .DS_Store
 .coverage
 .env
+projet_8/settings/production.py
+__pycache__
+staticfiles/

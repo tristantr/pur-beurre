@@ -6,15 +6,15 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
-environ.Env.read_env()
+#env = environ.Env()
+#environ.Env.read_env()
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'kwxj0-4uy&ey*7uqpwzdq4$ha1*&@8vep!1)zx)w5j7+)==fj9'
 
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['pur-beurre-tristan-tr.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['159.65.25.30']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -29,8 +29,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,18 +63,17 @@ AUTH_USER_MODEL = 'accounts.User'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASS'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT')
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'purbeurre',
+        'USER': 'tristantr',
+        'PASSWORD': 'Tristan92',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
-
+#db_from_env = dj_database_url.config(conn_max_age=600)
+#DATABASES['default'].update(db_from_env)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
