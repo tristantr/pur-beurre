@@ -11,7 +11,7 @@ class TestAccount(StaticLiveServerTestCase):
         PATH = "/Users/josselinlecuyer/Desktop/Formation developpeur Python/PROJETS/Projet 8/Livrable/chromedriver"
         self.browser = webdriver.Chrome(PATH)
 
-    def tearDown(self):
+   def tearDown(self):
         self.browser.close()
 
     def test_register(self):
