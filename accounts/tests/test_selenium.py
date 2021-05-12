@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 import time
@@ -8,10 +9,15 @@ from django.contrib.auth import get_user_model
 
 class TestAccount(StaticLiveServerTestCase):
     def setUp(self):
-        PATH = "/Users/josselinlecuyer/Desktop/Formation developpeur Python/PROJETS/Projet 8/Livrable/chromedriver"
-        self.browser = webdriver.Chrome(PATH)
+        chrome_options = Options()
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('window-size=1200x600')
+        PATH = "/usr/lib/chromium-browser/chromedriver"
+        self.browser = webdriver.Chrome(PATH, chrome_options=chrome_options)
 
-   def tearDown(self):
+    def tearDown(self):
         self.browser.close()
 
     def test_register(self):
