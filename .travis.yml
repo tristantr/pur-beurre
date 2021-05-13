@@ -1,16 +1,23 @@
 dist: bionic
 language: python
-python: 
+python:
       - '3.8.5'
-      
+
+addons:
+    chrome: stable
+    firefox: latest
+
 before_script:
       - pip install -r requirements.txt
+      - install-webdrivers --path webdrivers
 
 branches:
-    only:
-        - master 
+  only:
+      - master 
 
-env: DJANGO_SETTINGS_MODULE="projet_8.settings.travis"
+env:
+  global:        
+      - DJANGO_SETTINGS_MODULE="projet_8.settings.travis"
 
 services: 
       - postgresql
