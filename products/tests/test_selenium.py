@@ -17,8 +17,7 @@ class TestHomePage(StaticLiveServerTestCase):
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('window-size=1200x600')
-#        PATH = "/usr/lib/chromium-browser/chromedriver"
-        PATH = "/usr/bin/chromedriver"
+        PATH = "/usr/lib/chromium-browser/chromedriver"
         self.browser = webdriver.Chrome(PATH, chrome_options=chrome_options)
 
     def tearDown(self):
