@@ -3,6 +3,8 @@ import sys
 from django.core.management.base import BaseCommand
 from products.models import Product, Category
 
+from datetime import datetime
+
 from tqdm import tqdm
 
 
@@ -128,6 +130,8 @@ class Command(BaseCommand):
                 product.categories.add(category_id)
 
         print("SUCCESS")
+        print("------------------------")
+        print(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'))
 
     def handle(self, *args, **kwargs):
         """ Command to use with manage.py """
