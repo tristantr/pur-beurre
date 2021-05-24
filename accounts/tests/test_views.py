@@ -6,13 +6,14 @@ from django.contrib.messages import get_messages
 from accounts.forms import CreateUserForm
 from django.contrib.auth import get_user_model
 
+from django.core import mail 
+
 
 class BaseTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.credentials = {"email": "user@gmail.com", "password": "password"}
         self.user = User.objects.create_user(**self.credentials)
-        # self.users = User.objects.all().count()
         return super().setUp()
 
 
@@ -156,3 +157,19 @@ class LogoutTest(BaseTest):
         client_user = auth.get_user(self.client)
 
         self.assertFalse(client_user.is_authenticated)
+
+class EmailTest(TestCase):
+    def test_send_email(self):
+        # Send message.
+        mail.send_mail(
+            'Subject here', 'Here is the message.',
+            'from@example.com', ['to@example.com'],
+            fail_silently=False,
+        )
+
+        # Test that one message has been sent.
+        self.assertEqual(len(mail.outbox), 1)
+
+        # Verify that the subject of the first message is correct.
+        self.assertEqual(mail.outbox[0].subject, 'Subject here')
+        

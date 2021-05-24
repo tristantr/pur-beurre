@@ -10,6 +10,14 @@ class TestAccount(StaticLiveServerTestCase):
     def setUp(self):
         PATH = "/Users/josselinlecuyer/Desktop/Formation developpeur Python/PROJETS/Projet 8/Livrable/chromedriver"
         self.browser = webdriver.Chrome(PATH)
+        self.client.post(
+            reverse("register"),
+            data={
+                "email": "testo@gmail.com",
+                "password1": "VendalTest",
+                "password2": "VendalTest",
+            },
+        )        
 
     def tearDown(self):
         self.browser.close()
@@ -43,17 +51,8 @@ class TestAccount(StaticLiveServerTestCase):
         logout_button = self.browser.find_element_by_id("logout")
         self.assertEquals(logout_button.text, "Déconnexion")
 
-    def test_login(self):
-        # Create user
-        self.client.post(
-            reverse("register"),
-            data={
-                "email": "testo@gmail.com",
-                "password1": "VendalTest",
-                "password2": "VendalTest",
-            },
-        )
-
+    def test_login_and_logout(self):
+        ##### LOGIN
         users = get_user_model().objects.all()
         self.assertEqual(users.count(), 1)
 
@@ -76,3 +75,13 @@ class TestAccount(StaticLiveServerTestCase):
         # User is logged
         logout_button = self.browser.find_element_by_id("logout")
         self.assertEquals(logout_button.text, "Déconnexion")
+
+        ### LOGOUT
+
+        logout_button.click()
+        login_button = self.browser.find_element_by_id("login")
+        self.assertEquals(login_button.text, "Se connecter")
+
+
+
+            
