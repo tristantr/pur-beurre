@@ -93,6 +93,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Close the session when user closes the browser
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Sessions expires after a period of inactivity
+SESSION_COOKIE_AGE = 5 * 60
 
 LOGIN_URL = '/accounts/login'
 
